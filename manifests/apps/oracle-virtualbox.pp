@@ -6,12 +6,16 @@ define xorg::apps::oracle-virtualbox (
 
     apt::source { "oracle-virtualbox":
         ensure => $ensure,
-        key => "7B0FAB3A13B907435925D9C954422A4B98AB5139",
-        key_source => "http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc",
+        key => {
+            id =>"7B0FAB3A13B907435925D9C954422A4B98AB5139",
+            source => "http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc"
+        },
+        include => {
+            src => false
+        },
         location => "http://download.virtualbox.org/virtualbox/debian",
         release => $lsbdistcodename,
-        repos => "contrib",
-        include_src => false
+        repos => "contrib"
     }
     ->
     package { "virtualbox-$title":

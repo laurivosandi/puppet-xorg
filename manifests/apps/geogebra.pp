@@ -6,12 +6,16 @@ class xorg::apps::geogebra {
     # support in the particular video card driver used for kvm (?)
 
     apt::source { "geogebra":
-        key => "98272894F6478AA4434B41D3C072A32983A736CF",
-        key_server => "keyserver.ubuntu.com",
+        key => {
+            id => "98272894F6478AA4434B41D3C072A32983A736CF",
+            server => "keyserver.ubuntu.com"
+        },
+        include => {
+            src => false
+        },
         location => "http://www.geogebra.net/linux/",
         release => "stable",
         repos => "main",
-        include_src => false
     }
     ->
     package { "geogebra": ensure => purged } ->
