@@ -57,6 +57,7 @@ class xorg {
     package { "desktop-base": ensure => installed }
     package { "xserver-xorg": ensure => installed }
     package { "xserver-xorg-video-all": ensure => installed }
+    package { "virtualbox-guest-x11": ensure => installed }
     package { "xorg": ensure => installed }
     package { "xbitmaps": ensure => installed }
     package { "nouveau-firmware": ensure => installed }
