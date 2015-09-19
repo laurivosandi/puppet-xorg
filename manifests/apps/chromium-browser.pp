@@ -13,4 +13,34 @@ class xorg::apps::chromium-browser {
         package { "chromium-browser-l10n": ensure => installed } ->
         package { "chromium-codecs-ffmpeg-extra": ensure => installed }
     }
+
+    # Hide title bar on Linux
+    file { "/etc/skel/.config":
+        ensure => directory,
+        owner => root,
+        group => root,
+        mode => 755
+    }
+    ->
+    file { "/etc/skel/.config/chromium":
+        ensure => directory,
+        owner => root,
+        group => root,
+        mode => 755
+    }
+    ->
+    file { "/etc/skel/.config/chromium/Default":
+        ensure => directory,
+        owner => root,
+        group => root,
+        mode => 755
+    }
+    ->
+    file { "/etc/skel/.config/chromium/Default/Preferences":
+        ensure => present,
+        owner => root,
+        group => root,
+        mode => 644,
+        content => "{\"browser\":{\"custom_chrome_frame\":true}}"
+    }
 }
